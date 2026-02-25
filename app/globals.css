@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* --- SURFACE --- */
+    --surface-base:       #F0F2F5;   /* Neumorphic extrusion base */
+    --surface-deep:       #E4E8EF;   /* Recessed / inset surfaces */
+    --surface-light:      #FFFFFF;   /* Highlight face (top-left light) */
+    --surface-shadow:     #C8D0DE;   /* Shadow face (bottom-right) */
+
+    /* --- GLASS --- */
+    --glass-primary:      rgba(255, 255, 255, 0.18);
+    --glass-secondary:    rgba(255, 255, 255, 0.10);
+    --glass-dark:         rgba(15, 20, 40, 0.55);
+    --glass-blur:         20px;
+    --glass-border:       rgba(255, 255, 255, 0.35);
+
+    /* --- BRAND GRADIENT (AuraSutra Signature) --- */
+    --aura-teal:          #00D4BE;
+    --aura-cerulean:      #2563EB;
+    --aura-violet:        #7C3AED;
+    --aura-rose:          #F43F5E;
+    --aura-amber:         #F59E0B;
+
+    /* Gradient Definitions */
+    --grad-primary:       linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+    --grad-teal-blue:     linear-gradient(135deg, #00D4BE 0%, #2563EB 100%);
+    --grad-aurora:        linear-gradient(135deg, #00D4BE 0%, #2563EB 50%, #7C3AED 100%);
+    --grad-warm:          linear-gradient(135deg, #F59E0B 0%, #F43F5E 100%);
+
+     /* --- SEMANTIC --- */
+    --text-primary:       #1E2A3B;
+    --text-secondary:     #4A5568;
+    --text-muted:         #94A3B8;
+    --text-on-glass:      rgba(255,255,255,0.92);
+    --text-accent:        #2563EB;
+
+    /* --- STATUS --- */
+    --success:            #10B981;
+    --warning:            #F59E0B;
+    --error:              #EF4444;
+    --info:               #3B82F6;
+
+    /* --- SHADOWS --- */
+    --neu-sm:   4px 4px 8px #C8D0DE, -4px -4px 8px #FFFFFF;
+    --neu-md:   8px 8px 16px #C8D0DE, -8px -8px 16px #FFFFFF;
+    --neu-lg:   14px 14px 28px #C8D0DE, -14px -14px 28px #FFFFFF;
+    --neu-xl:   20px 20px 40px #BDC7D8, -20px -20px 40px #FFFFFF;
+
+    --neu-inset-sm:  inset 3px 3px 6px #C8D0DE, inset -3px -3px 6px #FFFFFF;
+    --neu-inset-md:  inset 6px 6px 12px #C8D0DE, inset -6px -6px 12px #FFFFFF;
+    --neu-inset-lg:  inset 10px 10px 20px #BDC7D8, inset -10px -10px 20px #FFFFFF;
+
+    --neu-lifted:  
+      20px 20px 50px #BDC7D8, 
+      -20px -20px 50px #FFFFFF,
+      0 4px 60px rgba(37,99,235,0.12);
+
+    --glass-shadow: 
+      0 8px 32px rgba(31,38,135,0.12),
+      0 2px 8px rgba(0,0,0,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+
+    /* --- DURATIONS --- */
+    --dur-instant:   80ms;
+    --dur-fast:      150ms;
+    --dur-normal:    300ms;
+    --dur-slow:      500ms;
+    --dur-deliberate: 800ms;
+    --dur-cinematic: 1200ms;
+
+    /* --- EASINGS --- */
+    --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-expo:  cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-glass:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-elastic:  cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Required by Shadcn */
+    --background: 216 20% 95%; /* Matches #F0F2F5 approx */
+    --foreground: 215 32% 17%; /* Matches #1E2A3B */
+    --card: 216 20% 95%;
+    --card-foreground: 215 32% 17%;
+    --popover: 216 20% 95%;
+    --popover-foreground: 215 32% 17%;
+    --primary: 221 83% 53%; /* Matches #2563EB */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --surface-base:    #1E2433;
+    --surface-deep:    #161B28;
+    --surface-light:   #2A3347;
+    --surface-shadow:  #0F1420;
+    
+    --neu-md:  8px 8px 16px #0F1420, -8px -8px 16px #2A3347;
+    --neu-inset-md: inset 6px 6px 12px #0F1420, inset -6px -6px 12px #2A3347;
+    
+    --glass-primary:   rgba(30, 36, 51, 0.6);
+    --glass-border:    rgba(255, 255, 255, 0.08);
+    
+    --text-primary:    rgba(255,255,255,0.92);
+    --text-secondary:  rgba(255,255,255,0.6);
+    --text-muted:      rgba(255,255,255,0.35);
+
+    /* Required by Shadcn */
+    --background: 222 24% 16%;
+    --foreground: 0 0% 92%;
+    --card: 222 24% 16%;
+    --card-foreground: 0 0% 92%;
+    --popover: 222 24% 16%;
+    --popover-foreground: 0 0% 92%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 221 83% 53%;
+
+    /* Background orbs intensify */
+    .bg-orb-1 { background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%); }
+    .bg-orb-2 { background: radial-gradient(circle, rgba(124,58,237,0.20) 0%, transparent 70%); }
+  }
+}
+
+/* --- ANIMATIONS & UTILS --- */
+@layer utilities {
+  .app-background {
+    background-color: var(--surface-base);
+    background-image:
+      radial-gradient(at 20% 30%, rgba(37,99,235,0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 10%, rgba(124,58,237,0.06) 0px, transparent 50%),
+      radial-gradient(at 50% 80%, rgba(0,212,190,0.07) 0px, transparent 50%),
+      radial-gradient(at 90% 70%, rgba(244,63,94,0.05) 0px, transparent 40%);
+  }
+
+  .heading-gradient {
+    background: var(--grad-aurora);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(37,99,235,0.3));
+  }
+}
+
+/* --- GLOBAL CURSOR & ORBS --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    600px circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(37, 99, 235, 0.04) 0%,
+    transparent 70%
+  );
+  transition: background 100ms linear;
+}
+
+.bg-orb-1 { 
+  position: fixed;
+  top: 10%; left: 10%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: orb-drift-1 12s ease-in-out infinite;
+  z-index: -1;
+}
+.bg-orb-2 {
+  position: fixed;
+  bottom: 10%; right: 10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: orb-drift-2 18s ease-in-out infinite reverse;
+  z-index: -1;
+}
+.bg-orb-3 {
+  position: fixed;
+  top: 50%; left: 50%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,212,190,0.12) 0%, transparent 70%);
+  filter: blur(50px);
+  animation: orb-drift-3 24s ease-in-out infinite;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px)) scale(1); }
+  33%       { transform: translate(calc(40px + var(--parallax-x, 0px)), calc(-30px + var(--parallax-y, 0px))) scale(1.05); }
+  66%       { transform: translate(calc(-20px + var(--parallax-x, 0px)), calc(25px + var(--parallax-y, 0px))) scale(0.97); }
+}
+@keyframes glass-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 0% -1000%;
+  }
+}
