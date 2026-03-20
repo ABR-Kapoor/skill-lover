@@ -98,7 +98,7 @@ Analyze the resume now and provide HIGHLY PERSONALIZED feedback.`;
 
 
 /**
- * Roadmap Generation Prompt
+ * Roadmap Generation Prompt - Optimized for faster generation
  */
 export function getRoadmapGenerationPrompt(params: {
   type: 'entrepreneur' | 'job_seeker';
@@ -113,104 +113,22 @@ export function getRoadmapGenerationPrompt(params: {
   };
 
   const duration = durationMap[params.intensity];
-  const weeks = Math.min(Math.ceil(duration.months * 4), 12); // Limit to 12 weeks to prevent API timeouts
+  const weeks = Math.min(Math.ceil(duration.months * 4), 6); // Limit to 6 weeks for faster generation
 
-  const entrepreneurFocus = params.type === 'entrepreneur'
-    ? `ENTREPRENEUR/BUSINESS PATH - Focus on building a profitable business:
+  const pathFocus = params.type === 'entrepreneur'
+    ? 'building a profitable business with client acquisition, sales, marketing, and scaling'
+    : 'landing a job with resume optimization, interview prep, networking, and applications';
 
-BUSINESS FUNDAMENTALS:
-- Market research and identifying profitable niches
-- Creating a business plan and financial projections
-- Understanding your target customer and their pain points
-- Competitive analysis and unique value proposition
-- Pricing strategies and revenue models (freelancing, products, services, SaaS)
+  return `Create a ${weeks}-week roadmap for ${params.type === 'entrepreneur' ? 'an entrepreneur' : 'a job seeker'} targeting: ${params.targetRole}
 
-CUSTOMER ACQUISITION:
-- Building a strong personal brand on LinkedIn, Twitter/X, and Instagram
-- Content marketing and thought leadership
-- Cold outreach strategies (email, LinkedIn, DMs)
-- Networking at industry events and online communities
-- Creating a compelling portfolio/case studies
-- Client testimonials and social proof
+Skills: ${params.currentSkills?.join(', ') || 'Beginner'}
+Intensity: ${params.intensity} (${duration.hoursPerDay}h/day)
+Focus: ${pathFocus}
 
-SALES & MARKETING:
-- Writing winning proposals and pitches
-- Negotiation skills and closing deals
-- Email marketing and lead nurturing
-- SEO and content strategy
-- Social media marketing and engagement
-- Building a sales funnel
-
-BUSINESS OPERATIONS:
-- Setting up legal structure (LLC, sole proprietorship, etc.)
-- Financial management and bookkeeping
-- Time management and productivity systems
-- Building systems and processes for scalability
-- Hiring and managing freelancers/team members
-- Tools and automation (CRM, project management, invoicing)
-
-GROWTH & SCALING:
-- Transitioning from freelancer to agency/product
-- Creating passive income streams
-- Building recurring revenue (retainers, subscriptions)
-- Strategic partnerships and collaborations
-- Raising capital or bootstrapping strategies
-- Exit strategies and long-term vision
-
-MINDSET & SKILLS:
-- Entrepreneurial mindset and resilience
-- Risk management and decision making
-- Public speaking and presentation skills
-- Leadership and team building
-- Continuous learning and adaptation`
-    : `JOB SEEKER PATH - Focus on landing your dream job:
-
-JOB SEARCH STRATEGY:
-- Job search strategies and application tracking
-- Resume and LinkedIn optimization for ATS
-- Cover letter writing and personalization
-- Identifying target companies and roles
-- Understanding job market trends
-
-INTERVIEW PREPARATION:
-- Technical interview preparation
-- Behavioral interview techniques (STAR method)
-- Mock interviews and feedback
-- Salary negotiation strategies
-- Following up with recruiters
-
-SKILL BUILDING:
-- Building a portfolio of projects
-- Contributing to open source
-- Preparing for technical assessments
-- Certifications and courses
-- Networking for job opportunities
-
-PROFESSIONAL BRANDING:
-- LinkedIn profile optimization
-- GitHub portfolio showcase
-- Personal website/blog
-- Professional networking
-- Industry event participation`;
-
-  return `You are an expert ${params.type === 'entrepreneur' ? 'business mentor and startup advisor' : 'career mentor and job coach'}. Create a highly detailed, personalized ${params.intensity} intensity roadmap for a ${params.type} aiming to ${params.type === 'entrepreneur' ? 'build a successful business as' : 'get hired as'}: ${params.targetRole}
-
-USER CONTEXT:
-- Career Path: ${params.type === 'entrepreneur' ? 'ENTREPRENEUR - Building a Business (Freelancing, Consulting, Agency, or Startup)' : 'JOB SEEKER - Getting Employed'}
-- Target Role/Business: ${params.targetRole}
-- Current Skills: ${params.currentSkills?.join(', ') || 'Beginner/No prior experience'}
-- Intensity: ${params.intensity} (${duration.hoursPerDay} hours/day, ${duration.months} months)
-- Total Weeks: ${weeks}
-
-${entrepreneurFocus}
-
-Generate a comprehensive roadmap with week-by-week milestones, tasks, and resources.
-Respond with valid JSON only (no markdown, no code blocks).
-
-JSON STRUCTURE:
+Return ONLY valid JSON (no markdown):
 {
-  "title": "Concise roadmap title",
-  "description": "2-3 sentence overview",
+  "title": "Short title",
+  "description": "2 sentence overview",
   "durationMonths": ${duration.months},
   "totalWeeks": ${weeks},
   "hoursPerDay": ${duration.hoursPerDay},
@@ -218,101 +136,31 @@ JSON STRUCTURE:
   "milestones": [
     {
       "week": 1,
-      "phase": "Foundation|Growth|Mastery|Launch",
+      "phase": "Foundation",
       "title": "Week title",
-      "description": "What this week focuses on",
-      "learningObjectives": ["objective 1", "objective 2", "objective 3"],
+      "description": "Focus area",
+      "learningObjectives": ["obj1", "obj2"],
       "tasks": [
         {
-          "title": "Task title",
-          "description": "Detailed task description",
-          "type": "${params.type === 'entrepreneur'
-      ? 'learning|project|networking|client_outreach|content_creation|business_setup|sales|marketing|linkedin|instagram|offline'
-      : 'learning|project|networking|linkedin|instagram|offline|interview_prep|application'}",
+          "title": "Task name",
+          "description": "What to do",
+          "type": "learning|project|networking",
           "estimatedHours": 5,
-          "priority": "high|medium|low",
-          "resources": [
-            {
-              "title": "Resource name",
-              "type": "course|video|article|tool|book|template",
-              "platform": "Platform name",
-              "url": "https://example.com",
-              "isFree": true,
-              "estimatedDuration": "2 hours"
-            }
-          ],
-          "deliverable": "What should be completed",
-          "successCriteria": "How to measure success"
+          "priority": "high",
+          "resources": [{"title": "Resource", "type": "video", "platform": "YouTube", "url": "https://youtube.com/watch?v=example", "isFree": true, "estimatedDuration": "1h"}],
+          "deliverable": "Output",
+          "successCriteria": "Measure"
         }
       ],
-      "weeklyGoal": "Main goal for the week",
-      "timeAllocation": {
-        "learning": 10,
-        "practice": 8,
-        "projects": 12,
-        "networking": 5
-      }
+      "weeklyGoal": "Main goal",
+      "timeAllocation": {"learning": 10, "practice": 8, "projects": 10, "networking": 5}
     }
   ],
   "keySkills": ["skill1", "skill2", "skill3"],
-  "toolsAndPlatforms": ["tool1", "tool2", "tool3"],
-  "successMetrics": ["metric1", "metric2", "metric3"],
-  "tips": ["tip1", "tip2", "tip3"]
+  "toolsAndPlatforms": ["tool1", "tool2"],
+  "successMetrics": ["metric1", "metric2"],
+  "tips": ["tip1", "tip2"]
 }
 
-REQUIREMENTS:
-1. Create ${weeks} weekly milestones
-2. Each week should have 3-5 tasks
-3. Include REAL, WORKING YouTube video links - DO NOT make up fake URLs
-4. For each task, provide at least 2-3 YouTube video tutorials
-5. Include popular Hindi YouTube channels like: CodeWithHarry, Apna College, Thapa Technical, etc.
-6. Balance learning, practice, projects, and networking
-7. Make tasks specific and measurable
-8. Include both free and paid resources (prefer free YouTube content)
-9. Tailor to ${params.type} path
-10. Consider current skill level: ${params.currentSkills?.length ? 'Intermediate' : 'Beginner'}
-11. Ensure progressive difficulty
-12. Include practical deliverables
-
-CRITICAL: YOUTUBE URL REQUIREMENTS:
-- ALL YouTube URLs MUST be in format: https://www.youtube.com/watch?v=VIDEO_ID
-- Use REAL video IDs from actual existing videos
-- DO NOT create fake or placeholder URLs
-- Verify the channel name matches the actual YouTube channel
-- For playlists, use: https://www.youtube.com/playlist?list=PLAYLIST_ID
-
-EXAMPLE REAL YOUTUBE URLS (use similar format):
-✅ CORRECT: "url": "https://www.youtube.com/watch?v=hdI2bqOjy3c" (Traversy Media - JavaScript Crash Course)
-✅ CORRECT: "url": "https://www.youtube.com/watch?v=RGOj5yH7evk" (freeCodeCamp - Git and GitHub)
-✅ CORRECT: "url": "https://www.youtube.com/watch?v=hQAHSlTtcmY" (CodeWithHarry - Web Development Hindi)
-❌ WRONG: "url": "https://youtube.com/example" (fake URL)
-❌ WRONG: "url": "https://www.youtube.com/placeholder" (placeholder)
-
-RESOURCE GUIDELINES:
-- MUST include YouTube videos for every learning task
-- Use REAL, EXISTING YouTube video URLs only
-- Provide both English and Hindi video options when available
-- Include video duration estimates (e.g., "45 minutes", "2 hours")
-- Prefer popular, high-quality channels with verified content
-- Mix of tutorials, project walkthroughs, and concept explanations
-- For documentation/articles, use official sources (MDN, official docs, etc.)
-
-POPULAR YOUTUBE CHANNELS TO USE (with real content):
-English: 
-- Traversy Media (https://www.youtube.com/@TraversyMedia)
-- freeCodeCamp (https://www.youtube.com/@freecodecamp)
-- The Net Ninja (https://www.youtube.com/@NetNinja)
-- Web Dev Simplified (https://www.youtube.com/@WebDevSimplified)
-- Fireship (https://www.youtube.com/@Fireship)
-
-Hindi:
-- CodeWithHarry (https://www.youtube.com/@CodeWithHarry)
-- Apna College (https://www.youtube.com/@ApnaCollegeOfficial)
-- Thapa Technical (https://www.youtube.com/@ThapaTechnical)
-- Chai aur Code (https://www.youtube.com/@chaiaurcode)
-- WsCube Tech (https://www.youtube.com/@WsCubeTech)
-
-IMPORTANT: Only include URLs from these verified channels or other well-known educational channels. If you're not sure about a URL, use a general search term instead (e.g., "Search: React tutorial for beginners").
-
-Return ONLY the JSON object, no additional text.`;
+Generate ${weeks} weeks, 2-3 tasks each. Use real YouTube URLs from channels like freeCodeCamp, Traversy Media, CodeWithHarry.`;
 }
