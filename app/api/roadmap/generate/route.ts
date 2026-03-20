@@ -9,6 +9,9 @@ import { RoadmapGenerationSchema, RoadmapContentSchema } from '@/lib/utils/valid
 import { calculateDuration, calculateTotalHours } from '@/lib/utils/roadmap-calculator';
 import type { RoadmapContent } from '@/types/database';
 
+// Vercel serverless function config - extend timeout for AI generation
+export const maxDuration = 60; // seconds (requires Vercel Pro for >10s)
+
 export async function POST(req: Request) {
     try {
         console.log('🚀 Starting roadmap generation...');

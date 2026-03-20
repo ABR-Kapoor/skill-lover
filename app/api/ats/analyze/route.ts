@@ -7,6 +7,9 @@ import { generateJSON } from '@/lib/ai';
 import { getATSAnalysisPrompt } from '@/lib/gemini/prompts';
 import type { ATSAnalysisResult } from '@/types/database';
 
+// Vercel serverless function config - extend timeout for AI generation
+export const maxDuration = 60; // seconds (requires Vercel Pro for >10s)
+
 export async function POST(req: Request) {
     try {
         console.log('🚀 Starting ATS analysis...');

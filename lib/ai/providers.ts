@@ -17,25 +17,25 @@ export interface AIProviderResult {
     error?: string;
 }
 
-// Provider configurations
+// Provider configurations - using fast models to avoid timeouts
 const PROVIDER_CONFIGS: Record<AIProvider, AIConfig> = {
     claude: {
         provider: 'claude',
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-3-5-haiku-20241022', // Fast model to avoid timeout
         temperature: 0.7,
-        maxTokens: 32768,
+        maxTokens: 8192,
     },
     gemini: {
         provider: 'gemini',
-        model: 'gemini-2.5-flash',
+        model: 'gemini-2.0-flash', // Fast model
         temperature: 0.7,
-        maxTokens: 32768,
+        maxTokens: 8192,
     },
     nvidia: {
         provider: 'nvidia',
-        model: 'meta/llama-3.1-405b-instruct',
+        model: 'meta/llama-3.1-70b-instruct', // Smaller, faster model
         temperature: 0.7,
-        maxTokens: 32768,
+        maxTokens: 8192,
     },
 };
 
