@@ -20,16 +20,24 @@ export default function ATSPage() {
     const fetchAnalyses = async () => {
       try {
         const res = await fetch('/api/ats/list');
-        const data = await res.json();
+        const contentType = res.headers.get('content-type');
         
-        if (data.success) {
-          setAnalyses(data.data || []);
+        if (contentType && contentType.includes('application/json')) {
+            const data = await res.json();
+            if (res.ok && data.success) {
+              setAnalyses(data.data || []);
+            } else {
+              toast.error(data.error || 'Failed to load analyses');
+            }
         } else {
-          toast.error(data.error || 'Failed to load analyses');
+            console.error('API returned non-JSON response');
+            if (!res.ok) {
+                toast.error('Server error while loading analyses');
+            }
         }
       } catch (error) {
-        console.error('Fetch error:', error);
-        toast.error('Failed to load analyses');
+        console.error('Network or fetch error:', error);
+        toast.error('Network error - could not load analyses');
       } finally {
         setIsLoading(false);
       }

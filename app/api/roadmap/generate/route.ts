@@ -3,7 +3,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { getUserByClerkId } from '@/lib/db/users';
 import { createRoadmap } from '@/lib/db/roadmaps';
 import { deductCredit } from '@/lib/utils/credits';
-import { generateJSON } from '@/lib/gemini/client';
+import { generateJSON } from '@/lib/ai';
 import { getRoadmapGenerationPrompt } from '@/lib/gemini/prompts';
 import { RoadmapGenerationSchema, RoadmapContentSchema } from '@/lib/utils/validators';
 import { calculateDuration, calculateTotalHours } from '@/lib/utils/roadmap-calculator';
@@ -72,8 +72,8 @@ export async function POST(req: Request) {
         const duration = calculateDuration(validatedInput.intensity);
         console.log('⏱️ Duration calculated:', duration);
 
-        // Generate roadmap using Gemini
-        console.log('🤖 Calling Gemini AI...');
+        // Generate roadmap using AI (with automatic fallback)
+        console.log('🤖 Calling AI for roadmap generation...');
         const prompt = getRoadmapGenerationPrompt(validatedInput);
 
         const aiResponse = await generateJSON(prompt, RoadmapContentSchema);

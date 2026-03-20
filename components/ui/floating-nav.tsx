@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { LayoutGrid, Map, FileText, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { GlassPanel } from './glass-panel';
 
 const navItems = [
   { icon: LayoutGrid, label: 'Dashboard', href: '/dashboard' },
@@ -35,7 +34,7 @@ export function FloatingNav() {
         dragConstraints={{ left: -200, right: 200, top: -600, bottom: 50 }}
         className="cursor-grab active:cursor-grabbing pointer-events-auto"
       >
-        <GlassPanel variant="dark" className="flex items-center gap-2 p-3 rounded-full border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/80 backdrop-blur-2xl ring-1 ring-white/5">
+        <div className="flex items-center gap-2 p-3 rounded-full border border-black/10 dark:border-white/10 shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-white/80 dark:bg-black/80 backdrop-blur-2xl ring-1 ring-black/5 dark:ring-white/5">
           {navItems.map((item) => {
             const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname?.startsWith(item.href));
             
@@ -49,14 +48,14 @@ export function FloatingNav() {
                 className={cn(
                   "relative flex flex-col items-center justify-center w-20 h-16 rounded-3xl transition-all duration-300 group overflow-hidden",
                   isActive 
-                    ? "text-white shadow-[0_0_20px_rgba(255,255,255,0.15)] ring-1 ring-white/10" 
-                    : "text-white/40 hover:text-white hover:bg-white/5 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_0_15px_rgba(255,255,255,0.05)] hover:ring-1 hover:ring-white/10"
+                    ? "text-black dark:text-white shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.15)] ring-1 ring-black/10 dark:ring-white/10" 
+                    : "text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 dark:hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_0_15px_rgba(255,255,255,0.05)] hover:ring-1 hover:ring-black/10 dark:hover:ring-white/10"
                 )}
               >
                 {isActive && (
                   <motion.div
                     layoutId="nav-pill"
-                    className="absolute inset-0 bg-white/10 rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_4px_10px_rgba(0,0,0,0.5)] border border-white/10 backdrop-blur-sm"
+                    className="absolute inset-0 bg-black/5 dark:bg-white/10 rounded-3xl dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_4px_10px_rgba(0,0,0,0.5)] border border-black/10 dark:border-white/10 backdrop-blur-sm"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
@@ -66,13 +65,12 @@ export function FloatingNav() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                   {/* Special Logic for Dashboard Icon */}
-                   {item.label === 'Dashboard' && user ? (
-                      <div className={cn("relative w-8 h-8 rounded-full overflow-hidden border-2 transition-all duration-300", isActive ? "border-white shadow-[0_0_10px_rgba(255,255,255,0.4)]" : "border-white/20")}>
+                   {item.label === 'Dashboard' && user?.imageUrl ? (
+                      <div className={cn("relative w-8 h-8 rounded-full overflow-hidden border-2 transition-all duration-300", isActive ? "border-black dark:border-white dark:shadow-[0_0_10px_rgba(255,255,255,0.4)] shadow-sm" : "border-black/20 dark:border-white/20")}>
                         <Image src={user.imageUrl} alt="User" fill className="object-cover" />
                       </div>
                    ) : (
-                      <item.icon className={cn("w-7 h-7 transition-all duration-300", isActive ? "scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" : "scale-100")} strokeWidth={isActive ? 2.5 : 2} />
+                      <item.icon className={cn("w-7 h-7 transition-all duration-300", isActive ? "scale-110 drop-shadow-md dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" : "scale-100")} strokeWidth={isActive ? 2.5 : 2} />
                    )}
 
                    <span className={cn("text-[10px] font-bold uppercase tracking-widest transition-opacity duration-300", isActive ? "opacity-100" : "opacity-70 group-hover:opacity-100")}>{item.label}</span>
@@ -82,14 +80,14 @@ export function FloatingNav() {
           })}
           
            {/* Divider */}
-           <div className="w-px h-10 bg-gradient-to-b from-transparent via-white/20 to-transparent mx-2" />
+           <div className="w-px h-10 bg-gradient-to-b from-transparent via-black/20 dark:via-white/20 to-transparent mx-2" />
 
            {/* About Me Button - Using Goku Icon */}
            <a
              href="https://cv.kapoorabeer.me/"
              target="_blank"
              rel="noopener noreferrer"
-             className="relative flex flex-col items-center justify-center w-20 h-16 rounded-3xl text-white/40 hover:text-white hover:bg-white/5 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_0_15px_rgba(255,255,255,0.05)] hover:ring-1 hover:ring-white/10 transition-all duration-300 group overflow-hidden"
+             className="relative flex flex-col items-center justify-center w-20 h-16 rounded-3xl text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 dark:hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_0_15px_rgba(255,255,255,0.05)] hover:ring-1 hover:ring-black/10 dark:hover:ring-white/10 transition-all duration-300 group overflow-hidden"
            >
               <motion.div 
                 className="relative z-10 flex flex-col items-center gap-1.5"
@@ -103,7 +101,7 @@ export function FloatingNav() {
               </motion.div>
            </a>
 
-        </GlassPanel>
+        </div>
       </motion.div>
     </div>
   );

@@ -8,8 +8,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="font-bold text-lg bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-              RoadmapAI
+            <h3 className="font-bold text-lg tracking-tight">
+              Skill <span className="text-[#cb5c4f]">Lover</span>
             </h3>
             <p className="text-sm text-muted-foreground">
               AI-powered career planning and resume optimization for students and professionals.
@@ -110,7 +110,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} RoadmapAI. All rights reserved. Built with ❤️ for students and professionals.</p>
+          <p>© {new Date().getFullYear()} Skill Lover. All rights reserved. Built with ❤️ for students and professionals.</p>
         </div>
       </div>
     </footer>

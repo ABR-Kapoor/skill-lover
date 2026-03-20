@@ -11,8 +11,8 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 font-bold text-xl">
             <Sparkles className="h-6 w-6 text-primary" />
-            <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-              RoadmapAI
+            <span className="font-bold text-xl tracking-tight">
+              Skill <span className="text-[#cb5c4f]">Lover</span>
             </span>
           </Link>
 

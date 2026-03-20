@@ -21,13 +21,24 @@ export default function RoadmapsPage() {
       try {
         const res = await fetch('/api/roadmap/list');
 
-        if (!res.ok) throw new Error('Failed to fetch roadmaps');
-
-        const data = await res.json();
-        setRoadmaps(data.data);
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const data = await res.json();
+            if (res.ok && data.success) {
+                setRoadmaps(data.data || []);
+            } else {
+                console.error('API Error:', data.error);
+                toast.error(data.error || 'Failed to load roadmaps');
+            }
+        } else {
+            console.error('API returned non-JSON response');
+            if (!res.ok) {
+                toast.error('Server error while loading roadmaps');
+            }
+        }
       } catch (error) {
-        console.error('Fetch error:', error);
-        toast.error('Failed to load roadmaps');
+        console.error('Network or fetch error:', error);
+        toast.error('Network error - could not load roadmaps');
       } finally {
         setIsLoading(false);
       }

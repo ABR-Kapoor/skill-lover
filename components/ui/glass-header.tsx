@@ -62,7 +62,7 @@ export function GlassHeader() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out w-full border-b",
         scrolled 
-          ? "bg-black/60 backdrop-blur-xl border-white/10 py-3 shadow-md" 
+          ? "bg-transparent backdrop-blur-xl border-white/10 py-3" 
           : "bg-transparent border-transparent py-6"
       )}
     >
@@ -73,7 +73,7 @@ export function GlassHeader() {
                 <Image src="/goku.svg" alt="App Logo" fill className="object-contain" />
              </div>
              <span className="font-display font-bold text-2xl tracking-tight text-glow">
-               Skill Lover
+               Skill <span className="text-[#cb5c4f]">Lover</span>
              </span>
          </div>
 

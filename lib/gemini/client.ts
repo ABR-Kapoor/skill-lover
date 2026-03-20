@@ -1,18 +1,25 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
 
 const apiKey = process.env.GEMINI_API_KEY;
 
-if (!apiKey) {
-    throw new Error('GEMINI_API_KEY is not set in environment variables');
-}
+// Lazy initialization - don't throw at import time
+let genAI: GoogleGenerativeAI | null = null;
 
-const genAI = new GoogleGenerativeAI(apiKey);
+function getGenAI(): GoogleGenerativeAI {
+    if (!apiKey) {
+        throw new Error('GEMINI_API_KEY is not set in environment variables');
+    }
+    if (!genAI) {
+        genAI = new GoogleGenerativeAI(apiKey);
+    }
+    return genAI;
+}
 
 /**
  * Get Gemini Pro model instance
  */
-export function getGeminiModel() {
-    return genAI.getGenerativeModel({
+export function getGeminiModel(): GenerativeModel {
+    return getGenAI().getGenerativeModel({
         model: 'gemini-2.5-flash',
         generationConfig: {
             temperature: 0.7,

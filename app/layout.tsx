@@ -28,26 +28,26 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "RoadmapAI - Your AI-Powered Career Architect",
-    template: "%s | RoadmapAI"
+    default: "Skill Lover - Your AI-Powered Career Architect",
+    template: "%s | Skill Lover"
   },
   description: "Generate personalized career roadmaps and optimize your resume with AI. From student to professional, we've got your career journey covered.",
   keywords: ["career planning", "AI roadmap", "resume analyzer", "ATS", "career development", "job search", "freelancing"],
-  authors: [{ name: "RoadmapAI Team" }],
-  creator: "RoadmapAI",
+  authors: [{ name: "Skill Lover Team" }],
+  creator: "Skill Lover",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://roadmapai.com",
-    title: "RoadmapAI - Your AI-Powered Career Architect",
+    url: "https://skilllover.com",
+    title: "Skill Lover - Your AI-Powered Career Architect",
     description: "Generate personalized career roadmaps and optimize your resume with AI.",
-    siteName: "RoadmapAI",
+    siteName: "Skill Lover",
   },
   twitter: {
     card: "summary_large_image",
-    title: "RoadmapAI - Your AI-Powered Career Architect",
+    title: "Skill Lover - Your AI-Powered Career Architect",
     description: "Generate personalized career roadmaps and optimize your resume with AI.",
-    creator: "@roadmapai",
+    creator: "@skilllover",
   },
   robots: {
     index: true,

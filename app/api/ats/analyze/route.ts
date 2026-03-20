@@ -3,7 +3,7 @@ import { requireAuth, getCurrentUser } from '@/lib/clerk/server';
 import { getUserByClerkId, createUserFromClerk } from '@/lib/db/users';
 import { createATSAnalysis } from '@/lib/db/ats';
 import { deductCredit } from '@/lib/utils/credits';
-import { generateJSON } from '@/lib/gemini/client';
+import { generateJSON } from '@/lib/ai';
 import { getATSAnalysisPrompt } from '@/lib/gemini/prompts';
 import type { ATSAnalysisResult } from '@/types/database';
 
@@ -67,8 +67,8 @@ export async function POST(req: Request) {
             );
         }
 
-        // Generate analysis with Gemini
-        console.log('🤖 Calling Gemini AI for analysis...');
+        // Generate analysis with AI (automatic fallback)
+        console.log('🤖 Calling AI for analysis...');
         const prompt = getATSAnalysisPrompt(resumeText, jobDescription);
         const analysisResult = await generateJSON<ATSAnalysisResult>(prompt);
 

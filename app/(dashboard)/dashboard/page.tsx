@@ -33,10 +33,10 @@ export default function DashboardPage() {
       className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8"
     >
         {/* Welcome Header */}
-        <motion.div variants={itemVariants} className="flex flex-col md:flex-row justify-between items-end gap-4 border-b border-white/5 pb-6">
+        <motion.div variants={itemVariants} className="flex flex-col md:flex-row justify-between items-end gap-4 border-b border-black/5 dark:border-white/5 pb-6">
           <div className="space-y-1">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
-              Skill Lover
+              Skill <span className="text-[#cb5c4f]">Lover</span>
             </h1>
             <p className="text-muted-foreground text-lg font-light flex items-center gap-2">
               Welcome back, <span className="font-medium text-foreground">{user?.firstName || 'Creator'}</span>
@@ -58,7 +58,7 @@ export default function DashboardPage() {
           <motion.div variants={itemVariants} className="md:col-span-6 lg:col-span-6 relative group">
             <Link href="/roadmaps/new" className="block h-full relative">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl opacity-50 group-hover:opacity-100 transition duration-500 blur group-hover:blur-md" />
-              <NeuCard className="relative h-full transition-all duration-300 group-hover:scale-[1.02] group-hover:-translate-y-1 bg-surface-deep/90 backdrop-blur-xl border-white/10 group-hover:border-white/20">
+              <NeuCard className="relative h-full transition-all duration-300 group-hover:scale-[1.02] group-hover:-translate-y-1 bg-white/70 dark:bg-black/40 backdrop-blur-xl border-black/5 dark:border-white/10 group-hover:border-black/10 dark:group-hover:border-white/20">
                 <div className="p-8 h-full flex flex-col justify-between relative z-10">
                   <div className="flex justify-between items-start">
                     <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/10 group-hover:bg-indigo-500 group-hover:text-white group-hover:scale-110 transition-all duration-300 ring-1 ring-indigo-500/20 group-hover:ring-indigo-500/50 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
@@ -88,7 +88,7 @@ export default function DashboardPage() {
           <motion.div variants={itemVariants} className="md:col-span-6 lg:col-span-6 relative group">
             <Link href="/ats/new" className="block h-full relative">
                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl opacity-50 group-hover:opacity-100 transition duration-500 blur group-hover:blur-md" />
-               <NeuCard className="relative h-full transition-all duration-300 group-hover:scale-[1.02] group-hover:-translate-y-1 bg-surface-deep/90 backdrop-blur-xl border-white/10 group-hover:border-white/20">
+               <NeuCard className="relative h-full transition-all duration-300 group-hover:scale-[1.02] group-hover:-translate-y-1 bg-white/70 dark:bg-black/40 backdrop-blur-xl border-black/5 dark:border-white/10 group-hover:border-black/10 dark:group-hover:border-white/20">
                 <div className="p-8 h-full flex flex-col justify-between relative z-10">
                   <div className="flex justify-between items-start">
                     <div className="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/10 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 transition-all duration-300 ring-1 ring-blue-500/20 group-hover:ring-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
@@ -187,7 +187,7 @@ export default function DashboardPage() {
                  </h3>
                  <Link href="/roadmaps" className="text-sm text-primary hover:text-primary/80 font-medium">View All</Link>
               </div>
-              <NeuCard variant="flat" className="min-h-[240px] flex flex-col items-center justify-center p-8 bg-surface-base/50 border-2 border-dashed border-white/5">
+              <NeuCard variant="flat" className="min-h-[240px] flex flex-col items-center justify-center p-8 bg-white/50 dark:bg-black/20 border-2 border-dashed border-black/5 dark:border-white/5">
                   <div className="w-16 h-16 rounded-full bg-surface-light flex items-center justify-center mb-4">
                      <Map className="w-8 h-8 text-muted-foreground/30" />
                   </div>
@@ -209,7 +209,7 @@ export default function DashboardPage() {
                  </h3>
                  <Link href="/ats" className="text-sm text-primary hover:text-primary/80 font-medium">View All</Link>
               </div>
-              <NeuCard variant="flat" className="min-h-[240px] flex flex-col items-center justify-center p-8 bg-surface-base/50 border-2 border-dashed border-white/5">
+              <NeuCard variant="flat" className="min-h-[240px] flex flex-col items-center justify-center p-8 bg-white/50 dark:bg-black/20 border-2 border-dashed border-black/5 dark:border-white/5">
                   <div className="w-16 h-16 rounded-full bg-surface-light flex items-center justify-center mb-4">
                      <FileText className="w-8 h-8 text-muted-foreground/30" />
                   </div>
